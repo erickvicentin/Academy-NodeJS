@@ -1,4 +1,7 @@
 // 8. Variables and Data Types
+
+console.log("SCRIPT 1");
+
 /**
  * - The variables names never can start with a number, only can start with _ or $ or letters.
  * - Types of variables:
