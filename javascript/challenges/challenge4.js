@@ -20,9 +20,13 @@ var mark = {
   },
 };
 
-jhon.calcBMI() > mark.calcBMI()
-  ? console.log("Jhon's BMI is higher than Marks's BMI.")
-  : console.log("Jhon's BMI is higher than Marks's BMI.");
+if (jhon.calcBMI() > mark.calcBMI()) {
+  console.log("Jhon's BMI is higher than Marks's BMI.");
+} else if (jhon.calcBMI() < mark.calcBMI()) {
+  console.log("Jhon's BMI is higher than Marks's BMI.");
+} else {
+  console.log("Jhon's BMI is same than Marks's BMI.");
+}
 
 console.log("Jhon BMI: " + jhon.calcBMI());
 console.log("Mark BMI: " + mark.calcBMI());
