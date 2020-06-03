@@ -14,13 +14,13 @@ GAME RULES:
  *********************************/
 var totalScores, roundScore, activePlayer, gamePlaying;
 
-newGame();
+init();
 
 /*********************************
  *********** FUNCTIONS ***********
  *********************************/
 
-function newGame() {
+function init() {
   totalScores = [0, 0];
   roundScore = 0;
   activePlayer = 0;
@@ -51,7 +51,7 @@ function change_player() {
   document.getElementById("current-1").textContent = "0";
   document.querySelector(".player-0-panel").classList.toggle("active");
   document.querySelector(".player-1-panel").classList.toggle("active");
-  document.querySelector(".dice").style.display = "none";
+  // document.querySelector(".dice").style.display = "none";
 }
 
 function btn_roll() {
@@ -111,4 +111,4 @@ function btn_hold() {
 
 document.querySelector(".btn-roll").addEventListener("click", btn_roll);
 document.querySelector(".btn-hold").addEventListener("click", btn_hold);
-document.querySelector(".btn-new").addEventListener("click", newGame);
+document.querySelector(".btn-new").addEventListener("click", init);
