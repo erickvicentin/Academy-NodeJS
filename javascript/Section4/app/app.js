@@ -12,30 +12,97 @@ GAME RULES:
 /*********************************
  ******* Global Variables ********
  *********************************/
-var totalScores, roundScore, activePlayer;
+var totalScores, roundScore, activePlayer, gamePlaying;
 
-totalScores = [0, 0];
-roundScore = 0;
-activePlayer = 0;
+newGame();
 
 /*********************************
  *********** FUNCTIONS ***********
  *********************************/
 
+function newGame() {
+  totalScores = [0, 0];
+  roundScore = 0;
+  activePlayer = 0;
+  gamePlaying = true;
+
+  document.querySelector(".dice").style.display = "none";
+  document.getElementById("score-0").textContent = "0";
+  document.getElementById("score-1").textContent = "0";
+  document.getElementById("current-0").textContent = "0";
+  document.getElementById("current-1").textContent = "0";
+  document.querySelector(".player-0-panel").classList.add("active");
+  document.querySelector(".player-1-panel").classList.remove("active");
+  document.querySelector("#name-0").textContent = "Player 1";
+  document.querySelector("#name-1").textContent = "Player 2";
+  document.querySelector(".player-0-panel").classList.remove("winner");
+  document.querySelector(".player-1-panel").classList.remove("winner");
+  document.querySelector(".player-0-panel").classList.remove("active");
+  document.querySelector(".player-1-panel").classList.remove("active");
+  document.querySelector(".player-0-panel").classList.add("active");
+}
+
+function change_player() {
+  // document.querySelector('.player-0-panel').classList.remove('active')
+  // document.querySelector(".player-1-panel").classList.add("active");
+  activePlayer === 0 ? (activePlayer = 1) : (activePlayer = 0);
+  roundScore = 0;
+  document.getElementById("current-0").textContent = "0";
+  document.getElementById("current-1").textContent = "0";
+  document.querySelector(".player-0-panel").classList.toggle("active");
+  document.querySelector(".player-1-panel").classList.toggle("active");
+  document.querySelector(".dice").style.display = "none";
+}
+
 function btn_roll() {
-  // Variables
-  var diceDOM = document.querySelector(".dice");
-  var currentDOM = document.querySelector("#current-" + activePlayer);
+  if (gamePlaying) {
+    // Variables
+    var diceDOM = document.querySelector(".dice");
+    var currentDOM = document.querySelector("#current-" + activePlayer);
 
-  // Step 1: Obtain random number.
-  var dice = Math.floor(Math.random() * 6) + 1;
+    // Step 1: Obtain random number.
+    var dice = Math.floor(Math.random() * 6) + 1;
 
-  // Step 2: Display current point.
-  diceDOM.style.display = "block";
-  diceDOM.src = "dice-" + dice + ".png";
-  currentDOM.textContent = dice;
+    // Step 2: Display current point.
+    diceDOM.style.display = "block";
+    diceDOM.src = "dice-" + dice + ".png";
+    currentDOM.textContent = dice;
 
-  // Step 3: Update the round score IF the rolled number !== 1;
+    // Step 3: Update the round score IF the rolled number !== 1;
+    if (dice !== 1) {
+      // Add score
+      roundScore += dice;
+    } else {
+      // Next player
+      change_player();
+    }
+
+    document.querySelector("#current-" + activePlayer).textContent = roundScore;
+  }
+}
+
+function btn_hold() {
+  if (gamePlaying) {
+    // Add current score to Global score
+    totalScores[activePlayer] += roundScore;
+
+    // Update the UI
+    document.getElementById("score-0").textContent = totalScores[0];
+    document.getElementById("score-1").textContent = totalScores[1];
+
+    // Check if player won the game
+    if (totalScores[activePlayer] >= 100) {
+      document.querySelector("#name-" + activePlayer).textContent = "Winner!!!";
+      document.querySelector(".dice").style.display = "none";
+      document
+        .querySelector(".player-" + activePlayer + "-panel")
+        .classList.add("winner");
+      gamePlaying = false;
+    } else {
+      // Next Player
+      change_player();
+    }
+  }
 }
 
 /*********************************
@@ -43,3 +110,5 @@ function btn_roll() {
  *********************************/
 
 document.querySelector(".btn-roll").addEventListener("click", btn_roll);
+document.querySelector(".btn-hold").addEventListener("click", btn_hold);
+document.querySelector(".btn-new").addEventListener("click", newGame);
