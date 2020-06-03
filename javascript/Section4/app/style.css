@@ -2,6 +2,20 @@
 *** GENERAL
 **********************************************/
 
+.score-limit {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 520px;
+  color: #555;
+  font-size: 18px;
+  font-family: "Lato";
+  text-align: center;
+  padding: 10px;
+  width: 160px;
+  text-transform: uppercase;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -145,6 +159,9 @@ i {
   transition: margin 0.3s;
 }
 
+.btn-edit {
+  top: 10px;
+}
 .btn-new {
   top: 45px;
 }

@@ -12,7 +12,7 @@ GAME RULES:
 /*********************************
  ******* Global Variables ********
  *********************************/
-var totalScores, roundScore, activePlayer, gamePlaying;
+var totalScores, roundScore, activePlayer, gamePlaying, lastDice, winningScore;
 
 init();
 
@@ -25,7 +25,6 @@ function init() {
   roundScore = 0;
   activePlayer = 0;
   gamePlaying = true;
-
   document.querySelector(".dice").style.display = "none";
   document.getElementById("score-0").textContent = "0";
   document.getElementById("score-1").textContent = "0";
@@ -69,9 +68,16 @@ function btn_roll() {
     currentDOM.textContent = dice;
 
     // Step 3: Update the round score IF the rolled number !== 1;
-    if (dice !== 1) {
+    if (dice === 6 && lastDice === 6) {
+      // Loose score if the last dice is 6 and actual dice is 6
+      totalScores[activePlayer] = 0;
+      document.querySelector("#score-" + activePlayer).textContent =
+        totalScores[activePlayer];
+      change_player();
+    } else if (dice !== 1) {
       // Add score
       roundScore += dice;
+      lastDice = dice;
     } else {
       // Next player
       change_player();
@@ -82,6 +88,10 @@ function btn_roll() {
 }
 
 function btn_hold() {
+  var input = document.querySelector(".score-limit").value;
+
+  input ? (winningScore = input) : (winningScore = 100);
+
   if (gamePlaying) {
     // Add current score to Global score
     totalScores[activePlayer] += roundScore;
@@ -91,7 +101,7 @@ function btn_hold() {
     document.getElementById("score-1").textContent = totalScores[1];
 
     // Check if player won the game
-    if (totalScores[activePlayer] >= 100) {
+    if (totalScores[activePlayer] >= winningScore) {
       document.querySelector("#name-" + activePlayer).textContent = "Winner!!!";
       document.querySelector(".dice").style.display = "none";
       document
@@ -112,3 +122,4 @@ function btn_hold() {
 document.querySelector(".btn-roll").addEventListener("click", btn_roll);
 document.querySelector(".btn-hold").addEventListener("click", btn_hold);
 document.querySelector(".btn-new").addEventListener("click", init);
+console.log(winningScore);
