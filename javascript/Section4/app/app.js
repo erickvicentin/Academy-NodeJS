@@ -20,6 +20,14 @@ init();
  *********** FUNCTIONS ***********
  *********************************/
 
+function showModal() {
+  document.getElementById("openModal").style.display = "block";
+}
+
+function CloseModal() {
+  document.getElementById("openModal").style.display = "none";
+}
+
 function init() {
   totalScores = [0, 0];
   roundScore = 0;
@@ -122,4 +130,3 @@ function btn_hold() {
 document.querySelector(".btn-roll").addEventListener("click", btn_roll);
 document.querySelector(".btn-hold").addEventListener("click", btn_hold);
 document.querySelector(".btn-new").addEventListener("click", init);
-console.log(winningScore);

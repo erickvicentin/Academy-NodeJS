@@ -17,7 +17,37 @@
     <title>Pig Game</title>
   </head>
 
-  <body>
+  <body onload="javascript:showModal();">
+    <modal>
+      <div id="openModal" class="modalDialog">
+        <div>
+          <a
+            href="#close"
+            title="Close"
+            class="close"
+            onclick="javascript:CloseModal();"
+            >X</a
+          >
+          <h2 align="center">Reglas del juego</h2>
+          <p class="paraf" align="justify">
+            En el juego participarán 2 jugadores. Al tirar los dados se
+            acumularan puntos, los cuales pueden guardarse cediendo el turno de
+            tirar el dado al otro jugador, o seguir acumulandose con el riesgo
+            de que si el dado cae en 1 se pierden los puntos sin guardar, o al
+            sacar un 6 dos veces seguidas se pierde la totalidad de puntos
+            guardados, en ambos casos el turno de tirar el dado pasa a ser del
+            otro jugador.
+          </p>
+          <p class="paraf" align="justify">
+            El limite de puntos para ganar el juego por defecto son 100, el cual
+            puede modificarse en cualquier momento del juego mientras éste se
+            encuentre en curso.
+          </p>
+          <h2 class="paraf" align="center">¡Gracias por jugar!</h2>
+        </div>
+      </div>
+    </modal>
+
     <div class="wrapper clearfix">
       <div class="player-0-panel active">
         <div class="player-name" id="name-0">Player 1</div>
