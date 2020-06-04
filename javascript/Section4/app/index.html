@@ -8,7 +8,7 @@
       type="text/css"
     />
     <link
-      href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+      href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
       rel="stylesheet"
       type="text/css"
     />
@@ -17,7 +17,7 @@
     <title>Pig Game</title>
   </head>
 
-  <body onload="javascript:showModal();">
+  <body onload="showModal();">
     <modal>
       <div id="openModal" class="modalDialog">
         <div>
@@ -81,5 +81,15 @@
     </div>
 
     <script src="app.js"></script>
+    <script type="text/javascript">
+      function showModal() {
+        document.getElementById("openModal").style.display = "block";
+      }
+    </script>
+    <script type="text/javascript">
+      function CloseModal() {
+        document.getElementById("openModal").style.display = "none";
+      }
+    </script>
   </body>
 </html>

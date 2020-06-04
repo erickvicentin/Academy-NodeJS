@@ -20,14 +20,6 @@ init();
  *********** FUNCTIONS ***********
  *********************************/
 
-function showModal() {
-  document.getElementById("openModal").style.display = "block";
-}
-
-function CloseModal() {
-  document.getElementById("openModal").style.display = "none";
-}
-
 function init() {
   totalScores = [0, 0];
   roundScore = 0;
