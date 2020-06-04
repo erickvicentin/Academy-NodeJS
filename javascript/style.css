@@ -5,23 +5,84 @@
   text-align: center;
 }
 
-.button {
-  padding: 5px;
-  background-color: #4caf50; /* Green */
-  border: none;
-  border-radius: 10px;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+.banner-title {
+  position: relative;
+  left: 50%;
+  transform: translateX(-16%);
 }
+
 .title {
   background-color: grey;
+  background-size: 400px;
   border-radius: 20px;
   padding: 5px;
+  width: fit-content;
 }
 .footer {
   padding: 10px;
+}
+
+.button {
+  position: absolute;
+  width: 500px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(53, 52, 52);
+  padding: 5px;
+  background: none;
+  border: none;
+  font-family: Lato;
+  font-size: 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 300;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button:hover {
+  font-weight: 600;
+}
+.button:hover i {
+  margin-right: 20px;
+}
+
+.button:focus {
+  outline: #00d9ff;
+}
+
+i {
+  color: black;
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 32px;
+  line-height: 1;
+  vertical-align: text-top;
+  margin-top: -4px;
+  transition: margin 0.3s;
+}
+
+.btn-clear {
+  top: 200px;
+}
+.btn-reload {
+  top: 250px;
+}
+.btn-app {
+  top: 300px;
+}
+.btn-home {
+  top: 350px;
+}
+
+.btn-section2 {
+  top: 200px;
+}
+.btn-section3 {
+  top: 250px;
+}
+.btn-section4 {
+  top: 300px;
+}
+.btn-section5 {
+  top: 350px;
 }

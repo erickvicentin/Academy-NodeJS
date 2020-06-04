@@ -3,6 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="StyleSheet" href="../style.css" type="text/css" media="screen" />
+    <link
+      href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,300,600"
+      rel="stylesheet"
+      type="text/css"
+    />
     <title>JS Basics</title>
   </head>
 
@@ -10,21 +20,36 @@
     class="body"
     background="https://c.wallhere.com/photos/8f/97/light_shine_sun-716067.jpg!d"
   >
-    <h1 class="title">👨‍💻Javascript Complete Course💻</h1>
+    <div class="banner-title">
+      <h1 class="title">👨‍💻Javascript Complete Course💻</h1>
+    </div>
     <h2>Section 2</h2>
     <p>
       This page contains scripts made in the Udemy Javascript course for the
       NodeJS Academy‍.
     </p>
-    <a class="button" onclick="console.clear()">
-      Clear Console📖
-    </a>
-    <a class="button" onclick="location.reload()">
-      Reload Page🔁
-    </a>
+    <button class="btn-clear button">
+      <i class="ion-ios-close-outline"></i>Clear Console
+    </button>
+    <button class="btn-reload button">
+      <i class="ion-ios-reload"></i>Reload Page
+    </button>
+    <button type="button" class="btn-home button">
+      <i class="ion-ios-download-outline"></i>HOME
+    </button>
   </body>
-  <footer class="footer">
-    <a class="button" href="../index.html">Home</a>
-  </footer>
-  <script src="./challenges/challenge5.js"></script>
+  <footer class="footer"></footer>
+  <script>
+    document.querySelector(".btn-clear").addEventListener("click", function () {
+      console.clear();
+    });
+    document
+      .querySelector(".btn-reload")
+      .addEventListener("click", function () {
+        location.reload();
+      });
+    document.querySelector(".btn-home").addEventListener("click", function () {
+      location.href = "../index.html";
+    });
+  </script>
 </html>
