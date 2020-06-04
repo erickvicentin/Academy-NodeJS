@@ -39,6 +39,7 @@ function init() {
   document.querySelector(".player-0-panel").classList.remove("active");
   document.querySelector(".player-1-panel").classList.remove("active");
   document.querySelector(".player-0-panel").classList.add("active");
+  document.querySelector(".score-limit").disabled = false;
 }
 
 function change_player() {
@@ -59,6 +60,7 @@ function btn_roll() {
     // Variables
     var diceDOM = document.querySelector(".dice");
     var currentDOM = document.querySelector("#current-" + activePlayer);
+    document.querySelector(".score-limit").disabled = true;
 
     // Step 1: Obtain random number.
     var dice = Math.floor(Math.random() * 6) + 1;
