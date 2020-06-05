@@ -204,3 +204,44 @@ questionJob("engineer")("Shumy");
 /*********************************************************
  * 69. Bind, Call and Apply
  *********************************************************/
+
+var erick = {
+  name: "Erick",
+  age: 23,
+  job: "Developer",
+  presentation: function (style, timeOfDay) {
+    if (style === "formal") {
+      console.log(
+        "Good " +
+          timeOfDay +
+          " ladies and gentlemen! Im " +
+          this.name +
+          ". Im " +
+          this.job +
+          " and Im " +
+          this.age +
+          " years old."
+      );
+    } else if (style === "friendly") {
+      console.log("Hey! Whats up? Im " + this.name + ". Good " + timeOfDay);
+    }
+  },
+};
+
+erick.presentation("formal", "moorning");
+
+var melisa = {
+  name: "Melisa",
+  age: 22,
+  job: "Medical doctor",
+};
+
+erick.presentation.call(melisa, "friendly", "night");
+
+erick.presentation.apply(melisa, ["friendly", "afternoon"]);
+
+var erickFriendly = erick.presentation.bind(erick, "friendly");
+
+erickFriendly("night");
+erickFriendly("morning");
+erickFriendly("afternoon");
