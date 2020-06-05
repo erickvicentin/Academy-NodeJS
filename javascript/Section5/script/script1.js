@@ -63,3 +63,144 @@ var melisa = Object.create(personProto, {
 /********************************************
  * 64. Primitives vs Objects
  * *****************************************/
+
+/* 
+
+// PRIMITIVES
+var x = 23;
+var y = x;
+x = 40;
+
+console.log(x);
+console.log(y);
+
+// OBJECTS
+var object1 = {
+  name: "Erick",
+  age: 23,
+};
+
+var object2 = object1;
+
+object1.age = 25;
+
+console.log(object1.age);
+console.log(object2.age);
+
+// FUNCTIONS
+var age = 27;
+var object = {
+    name: 'Jonas',
+    city: 'San Fransisco'
+}
+
+function change(a, b) {
+    a = 30,
+        b.city = 'Lisboa'
+}
+
+*/
+
+/********************************************
+ * 64. Primitives vs Objects
+ * *****************************************/
+
+/*
+
+var years = [1990, 1992, 1994, 1996, 1998, 2000];
+
+function arrayCalc(arr, fn) {
+  var arrayResult = [];
+  for (let i = 0; i < arr.length; i++) {
+    arrayResult.push(fn(arr[i]));
+  }
+  return arrayResult;
+}
+
+function calculateAge(elto) {
+  return 2020 - elto;
+}
+
+console.log(arrayCalc(years, calculateAge));
+
+*/
+
+/*********************************************************
+ * 66. First Class Functions: Functions Returning Functions
+ *********************************************************/
+
+/* 
+function interviewQuestion(job) {
+  if (job === "designer") {
+    return function (name) {
+      console.log(name + ", can you explain what is the UX design?");
+    };
+  } else if (job === "developer") {
+    return function (name) {
+      console.log(name + ", can you explain what is the method override?");
+    };
+  }
+}
+
+interviewQuestion("developer")("Erick");
+*/
+
+/*********************************************************
+ * 67.  Immediately Invoked Function Expressions (IIFE)
+ *********************************************************/
+
+/*
+
+(function () {
+  var score = Math.random() * 10;
+  console.log(score >= 5);
+})();
+
+(function (goodLuck) {
+  var score = Math.random() * 10;
+  console.log(score >= 5 - goodLuck);
+})(5);
+
+*/
+
+/*********************************************************
+ * 68.  Closures
+ *********************************************************/
+
+/* 
+
+function questionJob(job) {
+  var question1 = ", can you explain what is UX design?.";
+  var question2 = ", can you explain what is override of methods?";
+  var question3 = ", can you explain what is the ecologic refrigerant gas?";
+
+  return function (name) {
+    if (job === "designer") {
+      console.log(name + question1);
+    } else if (job === "developer") {
+      console.log(name + question2);
+    } else if (job === "technical") {
+      console.log(name + question3);
+    } else {
+      console.log(name + ", what is you do?");
+    }
+  };
+}
+
+questionDesigner = questionJob("designer");
+questionDeveloper = questionJob("developer");
+questionTechnic = questionJob("technical");
+questionOther = questionJob("other-job");
+
+questionDesigner("Erick");
+questionDeveloper("Leandro");
+questionTechnic("Genaro");
+questionOther("Melisa");
+
+questionJob("engineer")("Shumy");
+
+*/
+
+/*********************************************************
+ * 69. Bind, Call and Apply
+ *********************************************************/
