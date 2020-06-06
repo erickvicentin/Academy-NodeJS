@@ -89,7 +89,7 @@ body {
 .budget__expenses--text {
   float: left;
   font-size: 13px;
-  color: #444;
+  color: rgb(255, 255, 255);
   margin-top: 2px;
 }
 
