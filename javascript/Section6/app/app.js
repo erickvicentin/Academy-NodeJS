@@ -1,6 +1,6 @@
-/******************************
- * BUDGET CONTROLLER
- *****************************/
+/************************************************************************************************************************
+ ************************************************** BUDGET CONTROLLER **************************************************
+ ***********************************************************************************************************************/
 
 // IFFE function
 
@@ -108,9 +108,9 @@ var budgetController = (function () {
   };
 })();
 
-/******************************
- * UI MODULE
- *****************************/
+/************************************************************************************************************************
+ ******************************************************* UI MODULE ******************************************************
+ ***********************************************************************************************************************/
 
 var DOMstrings = {
   budgetLabel: ".budget__value",
@@ -177,6 +177,11 @@ var UIController = (function () {
       fieldsArr[0].focus();
     },
 
+    deleteListItem: function (selectorID) {
+      var elto = document.getElementById(selectorID);
+      elto.parentNode.removeChild(elto);
+    },
+
     displayBudget: function (obj) {
       document.querySelector(DOMstrings.budgetLabel).textContent = obj.budget;
       document.querySelector(DOMstrings.incomeLabel).textContent =
@@ -198,9 +203,9 @@ var UIController = (function () {
   };
 })();
 
-/******************************
- * GLOBAL APP CONTROLLER
- *****************************/
+/************************************************************************************************************************
+ ************************************************* GLOBAL APP CONTROLLER ************************************************
+ ***********************************************************************************************************************/
 
 var controller = (function (budgetCtrl, UICtrl) {
   //
@@ -268,8 +273,10 @@ var controller = (function (budgetCtrl, UICtrl) {
       budgetCtrl.deleteItem(type, ID);
 
       //2. delete item from ui
+      UICtrl.deleteListItem(itemID);
 
       //3. update and show the new budget
+      updateBudget();
     }
   };
 
