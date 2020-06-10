@@ -18,3 +18,6 @@ document.querySelector(".btn-section6").addEventListener("click", function () {
 document.querySelector(".btn-section7").addEventListener("click", function () {
   location.href = "./Section7/index.html";
 });
+document.querySelector(".btn-section8").addEventListener("click", function () {
+  location.href = "./Section8/index.html";
+});
