@@ -11,5 +11,8 @@
     "url": "https://github.com/erickvicentin/Academy-NodeJS/tree/master/javascript/Section9"
   },
   "author": "Erick Vicentin",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.43.0"
+  }
 }
