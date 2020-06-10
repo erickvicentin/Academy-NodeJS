@@ -21,3 +21,6 @@ document.querySelector(".btn-section7").addEventListener("click", function () {
 document.querySelector(".btn-section8").addEventListener("click", function () {
   location.href = "./Section8/index.html";
 });
+document.querySelector(".btn-section9").addEventListener("click", function () {
+  location.href = "./Section9/src/index.html";
+});

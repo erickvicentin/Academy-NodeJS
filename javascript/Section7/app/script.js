@@ -1,10 +1,12 @@
 /***************************************************************
  * 104. Variable declarations with let and const
  **************************************************************/
+
 /**
  * const => Valor constante no modificable en el tiempo.
  * let => Valor modificable, es como el antiguo var
  */
+
 /*
 let name = "Erick";
 const apellido = "Vicentin";
@@ -12,6 +14,7 @@ name = "Erick Emanuel";
 
 console.log(name + " " + apellido);
 */
+
 /*
 function es5(display) {
   if (display) {
@@ -43,9 +46,11 @@ for (let i = 0; i < 5; i++) {
 console.log(i);
 
 */
+
 /***************************************************************
  * 105. BLOCKS and IFFEs
  **************************************************************/
+
 /*
 {
   const a = 10;
@@ -58,9 +63,11 @@ console.log(i);
   console.log(a + b);
 }
 */
+
 /***************************************************************
  * 106. Strings in ES6
  **************************************************************/
+
 /*
 let firstName = "Erick ";
 let lastName = "Vicentin";
@@ -85,9 +92,11 @@ console.log(x.includes("ick"));
 console.log(firstName.repeat(5));
 
 */
+
 /***************************************************************
  * 107. Arrow functionsssssss =>
  **************************************************************/
+
 /*
 const years = [1990, 1992, 1994, 1996, 1998, 2000];
 
@@ -111,9 +120,11 @@ ages6 = years.map((elto, index) => {
 });
 console.log(ages6);
 */
+
 /***************************************************************
- * 107. Arrow functionsssssss =>  Lexical 'this' keyword!!
+ * 108. Arrow functionsssssss =>  Lexical 'this' keyword!!
  **************************************************************/
+
 /*
 // ES5
 var box5 = {
@@ -184,9 +195,11 @@ Person.prototype.myFriends6 = function (friends) {
 
 new Person("Mike").myFriends6(friends);
 */
+
 /***************************************************************
- * 108. Destructuring
+ * 109. Destructuring
  **************************************************************/
+
 /*
 // ES5
 var john = ["John", 26];
@@ -220,9 +233,11 @@ const [age2, retirement] = calcAgeRetirement(1990);
 console.log(age2);
 console.log(retirement);
 */
+
 /***************************************************************
- * 109. Arrays
+ * 110. Arrays
  **************************************************************/
+
 /*
 const boxes = document.querySelectorAll(".box");
 

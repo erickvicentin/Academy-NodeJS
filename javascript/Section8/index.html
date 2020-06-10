@@ -45,9 +45,9 @@
   <footer class="footer"></footer>
   <script src="script.js"></script>
   <script>
-    /***********************
+    /***************************************
      * Async Javascript
-     **********************/
+     **************************************/
 
     /*
     const second = () => {
@@ -65,8 +65,235 @@
     first();
     */
 
-    /***********************
+    /***************************************
      * Async Javascript: with callbacks
-     **********************/
+     **************************************/
+
+    /*
+    function getRecipe() {
+      setTimeout(() => {
+        const recetaID = [123, 456, 789, 532];
+        console.log(recetaID);
+
+        setTimeout(
+          (id) => {
+            const receta = {
+              title: "Ñoquis con Estofado de peceto",
+              publisher: "Melisa",
+            };
+            console.log(
+              `${id}: ${receta.title} cocinada por ${receta.publisher}`
+            );
+
+            setTimeout(
+              (publisher) => {
+                const receta2 = {
+                  title: "Asado a la estaca",
+                  publisher: "Erick",
+                };
+                console.log(receta2);
+              },
+              1500,
+              receta.publisher
+            );
+          },
+          1200,
+          recetaID[2]
+        );
+      }, 2000);
+    }
+    */
+
+    /***************************************
+     * From Callback hell to Promises!
+     **************************************/
+
+    /*  const getIDs = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve([123, 456, 789, 532]);
+      }, 1000);
+    });
+
+    const getRecipe = (recID) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(
+          (ID) => {
+            const receta = {
+              title: "Ñoquis con Estofado de peceto",
+              publisher: "Melisa",
+            };
+            resolve(`${ID}: ${receta.title} cocinada por ${receta.publisher}`);
+          },
+          1500,
+          recID
+        );
+      });
+    };
+
+    getRelated = (publisher) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(
+          (pub) => {
+            const receta2 = {
+              title: "Asado a la estaca",
+              publisher: "Erick",
+            };
+            resolve(`${pub}: ${receta2.title}`);
+          },
+          2000,
+          publisher
+        );
+      });
+    };
+
+    // promisses
+    getIDs
+      .then((IDs) => {
+        console.log(IDs);
+        return getRecipe(IDs[2]);
+      })
+      .then((receta) => {
+        console.log(receta);
+        return getRelated("Erick");
+      })
+      .then((receta) => {
+        console.log(receta);
+      })
+      .catch((error) => {
+        console.log("Error! Server not found.");
+      }); */
+
+    /***************************************
+     * From Promises to Async/Await
+     **************************************/
+
+    /* const getIDs = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve([123, 456, 789, 532]);
+      }, 1000);
+    });
+
+    const getRecipe = (recID) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(
+          (ID) => {
+            const receta = {
+              title: "Ñoquis con Estofado de peceto",
+              publisher: "Melisa",
+            };
+            resolve(`${ID}: ${receta.title} cocinada por ${receta.publisher}`);
+          },
+          1500,
+          recID
+        );
+      });
+    };
+
+    const getRelated = (publisher) => {
+      return new Promise((resolve, reject) => {
+        setTimeout(
+          (pub) => {
+            const receta2 = {
+              title: "Asado a la estaca",
+              publisher: "Erick",
+            };
+            resolve(`${pub}: ${receta2.title}`);
+          },
+          2000,
+          publisher
+        );
+      });
+    };
+
+    // await only can use into async function, never out...
+    async function getRecipesAW() {
+      const IDs = await getIDs;
+      console.log(IDs);
+      const receta = await getRecipe(IDs[2]);
+      console.log(receta);
+      const related = await getRelated("Erick");
+      console.log(related);
+
+      return receta;
+    }
+
+    getRecipesAW().then((receta) => {
+      console.log(`${receta} es lo mejor del mundo`);
+    }); */
+
+    /***************************************
+     * AJAX calls with fetch and promises
+     **************************************/
+
+    /* function getWeather(id) {
+      fetch(
+        `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${id}/`
+      )
+        .then((result) => {
+          //console.log(result);
+          // Convert data to JSON for read.
+          return result.json();
+        })
+        .then((data) => {
+          //console.log(data);
+          const today = data.consolidated_weather[0];
+          console.log(
+            `La temperatura en: ${
+              data.title
+            } rondara entre ${today.min_temp.toFixed(
+              2
+            )} grados de minima y ${today.max_temp.toFixed(
+              2
+            )} grados de maxima.`
+          );
+        })
+        .catch((error) => console.log(error));
+    }
+
+    getWeather(2487956);
+    getWeather(44418); */
+
+    /***************************************
+     * AJAX calls with fetch and Async/Await
+     **************************************/
+
+    async function getWeather(id) {
+      try {
+        const result = await fetch(
+          `https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${id}/`
+        );
+        const data = await result.json();
+        const today = data.consolidated_weather[0];
+        const tomorrow = data.consolidated_weather[1];
+
+        console.log(
+          `La temperatura en: ${
+            data.title
+          } rondara entre ${today.min_temp.toFixed(
+            2
+          )} grados de minima y ${today.max_temp.toFixed(2)} grados de maxima.`
+        );
+        console.log(
+          `La temperatura en: ${
+            data.title
+          } mañana rondara entre ${tomorrow.min_temp.toFixed(
+            2
+          )} grados de minima y ${tomorrow.max_temp.toFixed(
+            2
+          )} grados de maxima.`
+        );
+        return data;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getWeather(2487956);
+
+    let dataLondon;
+    dataLondon = getWeather(44418).then((data) => {
+      dataLondon = data;
+      console.log(dataLondon);
+    });
   </script>
 </html>
