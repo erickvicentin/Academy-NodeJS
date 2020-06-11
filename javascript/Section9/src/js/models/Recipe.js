@@ -44,6 +44,7 @@ export default class Recipe {
       'pounds',
     ];
     const unitsShort = ['tbsp', 'tbsp', 'oz', 'oz', 'tsp', 'cup', 'pound'];
+    const units = [...unitsShort, 'kg', 'g'];
 
     const newIngredients = this.ingredients.map((elto) => {
       // 1. Uniform units

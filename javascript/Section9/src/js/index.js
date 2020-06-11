@@ -52,6 +52,8 @@ const controlRecipe = async () => {
 
   if (id) {
     //prepare UI for changes
+    recipeView.clearRecipe();
+    renderLoader(elements.recipe);
 
     // create new recipe object and add to state
     state.recipe = new Recipe(id);
@@ -66,6 +68,8 @@ const controlRecipe = async () => {
       const servings = state.recipe.calcServings();
 
       // render recipe
+      clearLoader();
+      recipeView.renderRecipe(state.recipe);
     } catch (err) {
       console.log('Error procesando la receta');
     }
