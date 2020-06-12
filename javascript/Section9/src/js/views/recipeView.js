@@ -11,7 +11,7 @@ const formatCount = (count) => {
       .split('.')
       .map((el) => parseInt(el, 10));
 
-    if (!dec) return coutn;
+    if (!dec) return count;
 
     if (int === 0) {
       const fr = new Fraction(count);
