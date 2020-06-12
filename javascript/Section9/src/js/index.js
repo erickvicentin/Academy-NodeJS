@@ -37,7 +37,7 @@ const controlSearch = async () => {
       clearLoader();
       searchView.renderResults(state.search.result);
     } catch (err) {
-      console.log('Algo salió mal en la busqueda...');
+      alert('Algo salió mal en la busqueda...');
       clearLoader();
     }
   }
@@ -47,31 +47,35 @@ const controlSearch = async () => {
  * RECIPE CONTROLLER
  ********************************/
 const controlRecipe = async () => {
+  // Get ID from url
   const id = window.location.hash.replace('#', '');
-  console.log(id);
 
   if (id) {
-    //prepare UI for changes
+    // Prepare UI for changes
     recipeView.clearRecipe();
     renderLoader(elements.recipe);
 
-    // create new recipe object and add to state
+    // Highlight selected search item
+    if (state.search) searchView.highlightSelected(id);
+
+    // Create new recipe object
     state.recipe = new Recipe(id);
 
     try {
-      // get recipe data and parse ingredients
+      // Get recipe data and parse ingredients
       await state.recipe.getRecipe();
       state.recipe.parseIngredients();
 
-      // calculate servings and time
-      const time = state.recipe.calcTime();
-      const servings = state.recipe.calcServings();
+      // Calculate servings and time
+      state.recipe.calcTime();
+      state.recipe.calcServings();
 
-      // render recipe
+      // Render recipe
       clearLoader();
       recipeView.renderRecipe(state.recipe);
     } catch (err) {
-      console.log('Error procesando la receta');
+      console.log(err);
+      alert('Error processing recipe!');
     }
   }
 };
