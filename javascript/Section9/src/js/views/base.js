@@ -1,4 +1,6 @@
 export const elements = {
+  likesMenu: document.querySelector('.likes__field'),
+  likesList: document.querySelector('.likes__list'),
   recipe: document.querySelector('.recipe'),
   searchForm: document.querySelector('.search'),
   searchInput: document.querySelector('.search__field'),
