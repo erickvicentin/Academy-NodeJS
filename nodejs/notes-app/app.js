@@ -5,7 +5,6 @@ const chalk = require('chalk');
 
 // @own_modules
 const notes = require('./notes.js');
-const file = 'notes.txt';
 
 // Create add command
 yargs.command({
@@ -24,10 +23,7 @@ yargs.command({
     },
   },
   handler: function (argv) {
-    console.log(chalk.green(`Title: ${argv.title}`));
-    console.log(
-      chalk.yellowBright(`${chalk.underline('Content')}: ${argv.body}`)
-    );
+    notes.addNote(argv.title, argv.body);
   },
 });
 
