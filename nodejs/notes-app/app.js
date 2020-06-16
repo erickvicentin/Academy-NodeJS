@@ -1,14 +1,11 @@
+// @node_modules
 const validator = require('validator');
+const chalk = require('chalk');
+
+// @own_modules
 const notes = require('./notes.js');
 
-const msj = notes();
-
-console.log(msj);
-
-console.log(validator.isEmail('erickvicentin14@hotmail.com'));
-console.log(validator.isURL('erickvicentin.github.io'));
-
-/*
- * const msj = require('./utils.js');
- * console.log(msj);
- */
+console.log(chalk.underline.green('Success!'));
+console.log(chalk.bold.red('Code by: '));
+console.log(chalk.bold.inverse.yellow('Erick Vicentin'));
+console.log(chalk.bold.inverse.yellow('Melisa Medina'));
