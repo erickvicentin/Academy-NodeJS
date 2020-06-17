@@ -1,8 +1,1 @@
-[
-  {
-    "title": "Datos",
-    "body": "Esta es mi nota personal, soy Erick Vicentin, tengo 23 años y soy web UI developer"
-  },
-  { "title": "Cartita", "body": "Melisa te amo mucho!" },
-  { "title": "Email", "body": "erick.vicentin@globant.com" }
-]
+[{"title":"Datos","body":"Esta es mi nota personal, soy Erick Vicentin, tengo 23 años y soy web UI developer"},{"title":"Email","body":"erick.vicentin@globant.com"}]
