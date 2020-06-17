@@ -46,7 +46,8 @@ yarn-lock.json
 /public/components.json
 
 # Components examples
-/public/examples.json
+*.json
+notes-app/
 
 #Configure prettier
 *.prettierrc
