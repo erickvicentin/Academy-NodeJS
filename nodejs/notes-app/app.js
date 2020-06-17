@@ -53,8 +53,8 @@ yargs.command({
 yargs.command({
   command: 'read',
   describe: 'Read a note',
-  handler: function () {
-    console.log(chalk.red('Read a note'));
+  handler: function (argv) {
+    notes.readNote(argv.title);
   },
 });
 
