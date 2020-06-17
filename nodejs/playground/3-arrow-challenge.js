@@ -7,10 +7,8 @@
 
 const tasks = {
   getTasksToDo() {
-    const toDo = this.tasks.filter((task) => {
-      return task.completed === false;
-    });
-    console.log(toDo);
+    const toDo = this.tasks.filter((task) => task.completed === false);
+    return toDo;
   },
 
   tasks: [

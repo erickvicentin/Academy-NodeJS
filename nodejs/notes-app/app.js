@@ -28,14 +28,6 @@ yargs.command({
 });
 
 yargs.command({
-  command: 'edit',
-  describe: 'Edit a note',
-  handler: function () {
-    console.log(chalk.yellowBright('Editing a note'));
-  },
-});
-
-yargs.command({
   command: 'remove',
   describe: 'Remove a note',
   builder: {
@@ -54,7 +46,7 @@ yargs.command({
   command: 'list',
   describe: 'List all notes',
   handler: function () {
-    console.log(chalk.red('Listing your notes'));
+    notes.listNotes();
   },
 });
 
