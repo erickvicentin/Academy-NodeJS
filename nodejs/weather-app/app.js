@@ -1,37 +1,29 @@
-const config = require('./config');
-const request = require('request');
+const geocode = require('./utils/geocode');
+const forecast = require('./utils/forecast');
 
-const url = `http://api.weatherstack.com/current?access_key=${config.key}&query=${config.location}`;
+const address = process.argv[2];
 
-request(
-  {
-    url: url,
-    json: true,
-  },
-  (error, response) => {
-    const data = response.body.current;
-    const location = response.body.location;
-    const time = location.localtime.split(' ');
+if (!address) {
+  console.log(`Por favor, ingrese un lugar para buscar.`);
+} else {
+  geocode(address, (geoError, geoData) => {
+    if (geoError) {
+      console.log(geoError);
+    } else {
+      console.log(`Localizacion: ${geoData.location}`);
+      const lat = geoData.latitude.toFixed(2);
+      const long = geoData.longitude.toFixed(2);
 
-    //  Log data
-    console.log(
-      `Ciudad: ${location.name}, ${location.region} - ${location.country}`
-    );
-    console.log(`Fecha: ${time[0]} - Hora: ${time[1]}`);
-
-    console.log(`Temperatura: ${data.temperature}°C`);
-    console.log(`Humedad: ${data.humidity}%`);
-    console.log(`Precipitaciones: ${data.precip}%`);
-    console.log(`Vientos a ${data.wind_speed} km/h`);
-    //  Dont remove
-  }
-);
-
-const geocodeURL = `https://api.mapbox.com/geocoding/v5/mapbox.places/Resistencia.json?access_token=${config.token}&limit=1`;
-
-request({ url: geocodeURL, json: true }, (error, response) => {
-  const latitude = response.body.features[0].center[0];
-  const longitude = response.body.features[0].center[1];
-  console.log(`Latitud: ${latitude}, Longitud: ${longitude}`);
-  console.log(response.body.features[0].place_name);
-});
+      forecast(lat, long, (forecastError, forecastData) => {
+        if (forecastError) {
+          console.log(forecastError);
+        } else {
+          console.log(`
+        Temperatura: ${forecastData.temperature}°C
+        Humedad: ${forecastData.humidity}%
+        Vientos a ${forecastData.wind_speed} km/h`);
+        }
+      });
+    }
+  });
+}
