@@ -1,0 +1,23 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Weather App for NodeJS Udemy Course. Part of Globant Academy. ",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erickvicentin/weather-app.git"
+  },
+  "author": "Erick Vicentin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erickvicentin/weather-app/issues"
+  },
+  "homepage": "https://github.com/erickvicentin/weather-app#readme",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}
