@@ -6,24 +6,28 @@ const address = process.argv[2];
 if (!address) {
   console.log(`Por favor, ingrese un lugar para buscar.`);
 } else {
-  geocode(address, (geoError, geoData) => {
+  geocode(address, (geoError, { latitude, longitude, location }) => {
     if (geoError) {
       console.log(geoError);
     } else {
-      console.log(`Localizacion: ${geoData.location}`);
-      const lat = geoData.latitude.toFixed(2);
-      const long = geoData.longitude.toFixed(2);
+      console.log(`Localizacion: ${location}`);
+      const lat = latitude.toFixed(2);
+      const long = longitude.toFixed(2);
 
-      forecast(lat, long, (forecastError, forecastData) => {
-        if (forecastError) {
-          console.log(forecastError);
-        } else {
-          console.log(`
-        Temperatura: ${forecastData.temperature}°C
-        Humedad: ${forecastData.humidity}%
-        Vientos a ${forecastData.wind_speed} km/h`);
+      forecast(
+        lat,
+        long,
+        (forecastError, { temperature, humidity, wind_speed }) => {
+          if (forecastError) {
+            console.log(forecastError);
+          } else {
+            console.log(`
+        Temperatura: ${temperature}°C
+        Humedad: ${humidity}%
+        Vientos a ${wind_speed} km/h`);
+          }
         }
-      });
+      );
     }
   });
 }
