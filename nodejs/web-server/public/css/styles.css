@@ -1,0 +1,20 @@
+h1 {
+  color: white;
+  background: chocolate;
+  text-align: center;
+  width: auto;
+  border-radius: 10px;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+img {
+  width: 250px;
+  border-radius: 250px;
+  display: block;
+  margin: auto;
+}
+
+p {
+  text-align: center;
+}
