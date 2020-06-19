@@ -4,7 +4,7 @@ const config = require('./config');
 const forecast = (lat, lon, callback) => {
   const url = `http://api.weatherstack.com/current?access_key=${config.key}&query=${lat},${lon}`;
 
-  request({ url: url, json: true }, (error, response) => {
+  request({ url, json: true }, (error, response) => {
     const data = response.body;
     const location = data.location;
 
