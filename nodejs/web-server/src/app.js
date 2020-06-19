@@ -47,6 +47,13 @@ app.get('/weather', (req, res) => {
   });
 });
 
+app.get('*', (req, res) => {
+  res.render('missing', {
+    title: '404 Not Found!',
+    name: 'Erick Vicentin',
+  });
+});
+
 app.listen(3000, () => {
   console.log('Server is up on port 3000.');
 });
