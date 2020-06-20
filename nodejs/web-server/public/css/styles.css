@@ -6,7 +6,6 @@ h1 {
 }
 
 .header {
-  background: chocolate;
   width: 100%;
 }
 
@@ -23,7 +22,6 @@ p {
 }
 
 .buttons__bar {
-  background: grey;
   border-radius: 0px;
   display: flex;
   justify-content: center;
@@ -33,8 +31,7 @@ p {
 }
 
 .title {
-  color: white;
-  background: chocolate;
+  color: black;
   border-radius: 10px;
   display: block;
   font-family: Arial, Helvetica, sans-serif;
@@ -49,26 +46,28 @@ a {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 1px;
   margin: 5px;
   padding: 10px;
   width: 100px;
   text-align: center;
+  border: 1px solid #000;
 }
 
 a:link {
   background-color: honeydew;
-  color: #265301;
+  color: black;
 }
 
 a:visited {
-  color: #437a16;
+  color: black;
 }
 
 a:hover {
-  background: chocolate;
+  background-color: grey;
   border-bottom: 1px solid;
   color: white;
+  border: 1px solid rgb(255, 255, 255);
 }
 
 a:active {
@@ -80,7 +79,9 @@ a:active {
   background-color: rgb(163, 163, 163);
   bottom: 0;
   color: white;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 18px;
   left: 0;
   position: fixed;
   text-align: center;
@@ -95,6 +96,7 @@ a:active {
 
 .logo__link {
   border-radius: 0px;
+  border: none;
   margin: 0px;
   padding: 0px;
   text-decoration: none;

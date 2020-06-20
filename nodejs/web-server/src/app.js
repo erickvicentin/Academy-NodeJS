@@ -21,7 +21,7 @@ app.use(express.static(publicDirectoryPath));
 
 app.get('', (req, res) => {
   res.render('index', {
-    title: 'Weather',
+    title: ' Weather - App ',
     name: 'Erick Vicentin',
   });
 });
@@ -44,6 +44,12 @@ app.get('/weather', (req, res) => {
   res.send({
     forecast: 'Hace frio',
     location: 'Resistencia',
+  });
+});
+
+app.get('/products', (req, res) => {
+  res.send({
+    products: [],
   });
 });
 
