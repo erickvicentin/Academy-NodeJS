@@ -24,24 +24,22 @@ weatherForm.addEventListener('submit', (e) => {
   precip_title.textContent = '';
   desc_title.textContent = '';
 
-  fetch(`http://localhost:3000/weather?address=${location}`).then(
-    (response) => {
-      response.json().then((data) => {
-        if (data.error) {
-          weather_title.textContent = `${data.error}`;
-        } else {
-          const dataTime = data.forecast.time.split(' ')[1];
+  fetch(`/weather?address=${location}`).then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+        weather_title.textContent = `${data.error}`;
+      } else {
+        const dataTime = data.forecast.time.split(' ')[1];
 
-          weather_img.src = `${data.forecast.icon}`;
-          weather_title.textContent = `Weather on ${data.location}`;
-          hour_title.textContent = `Weather data of the city at ${dataTime}`;
-          temperature_title.textContent = `Current temperature of ${data.forecast.temperature} ° C.`;
-          humidity_title.textContent = `Humidity at ${data.forecast.humidity}%`;
-          wind_speed_title.textContent = `Winds at a speed of ${data.forecast.wind_speed} km/h`;
-          precip_title.textContent = `Precipitations chance of ${data.forecast.precip}%`;
-          desc_title.textContent = `Visibility of ${data.forecast.visibility}%. Sky status: ${data.forecast.description} `;
-        }
-      });
-    }
-  );
+        weather_img.src = `${data.forecast.icon}`;
+        weather_title.textContent = `Weather on ${data.location}`;
+        hour_title.textContent = `Weather data of the city at ${dataTime}`;
+        temperature_title.textContent = `Current temperature of ${data.forecast.temperature} ° C.`;
+        humidity_title.textContent = `Humidity at ${data.forecast.humidity}%`;
+        wind_speed_title.textContent = `Winds at a speed of ${data.forecast.wind_speed} km/h`;
+        precip_title.textContent = `Precipitations chance of ${data.forecast.precip}%`;
+        desc_title.textContent = `Visibility of ${data.forecast.visibility}%. Sky status: ${data.forecast.description} `;
+      }
+    });
+  });
 });
