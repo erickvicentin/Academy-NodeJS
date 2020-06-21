@@ -5,13 +5,30 @@
 <head>
     <title>{{title}}</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <script src="/js/app.js"></script>
 </head>
 
 <body>
-    {{>header}}
+    <div class="main__container">
+        {{>header}}
 
-    {{>footer}}
+        <form>
+            <input placeholder="Location">
+            <button class="btn"> Search </button>
+        </form>
+
+        <img src="/img/weather.png" id="weather_img" alt="clima" />
+        <h2 id="message-1"></h2>
+        <p id="message-2"></p>
+        <p id="message-3"></p>
+        <p id="message-4"></p>
+        <p id="message-5"></p>
+        <p id="message-6"></p>
+        <p id="message-7"></p>
+
+        {{>footer}}
+    </div>
+    <script src="/js/app.js"></script>
+
 </body>
 
 </html>

@@ -68,6 +68,7 @@ a:hover {
   border-bottom: 1px solid;
   color: white;
   border: 1px solid rgb(255, 255, 255);
+  transition-duration: 0.4s;
 }
 
 a:active {
@@ -128,4 +129,48 @@ a:active {
   width: 78%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.main__container {
+  flex-grow: 1;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+}
+
+p {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+input {
+  width: 28.5%;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#weather_img {
+  height: 80px;
+  width: 80px;
+  border-radius: 5px;
+}
+
+.btn {
+  transition-duration: 0.4s;
+  background: white;
+  padding: 10px;
+  border: 1px solid black;
+  margin-left: 2px;
+}
+
+.btn:hover {
+  background-color: grey;
+
+  color: white;
 }
