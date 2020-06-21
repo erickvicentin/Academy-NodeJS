@@ -16,3 +16,20 @@ In this section I will be adding information on the installation and use of the 
 * [Available here!](https://erickvicentin.github.io/pages/app-2/index.html) Application for the control-monitoring-management of the monthly budget available. It allows adding-removing income and expenses, with their respective description and amount.
 
 ![budget](https://user-images.githubusercontent.com/54728319/84109496-2b804980-a9f9-11ea-9a52-1d877f3d02ac.png)
+
+## FORKIFY💵
+* This application allows you to search for a wide variety of recipes, calculate the amount of ingredients based on the required servings, and access the preparation instructions for each one. It was done using npm, webpack, babel, javascript, css and html.
+
+![forkify](https://user-images.githubusercontent.com/54728319/85216823-b816fa00-b35f-11ea-8424-6dc710d3c70e.png)
+
+To use this app, please after clone-download the folder of [Forkify](https://github.com/erickvicentin/Academy-NodeJS/tree/master/javascript/Section9) type in your bash / console:
+```
+npm install
+npm dev
+npm build
+npm start
+```
+The necessary packages will be installed for the application to work, and it will also open a tab in your default browser to be able to use it.
+
+Enjoy!
+
