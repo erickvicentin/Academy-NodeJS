@@ -3,6 +3,13 @@ const express = require('express');
 const hbs = require('hbs');
 const path = require('path');
 
+// @own_modules
+const geoCode = require('./utils/geocode');
+const forecast = require('./utils/forecast');
+const geocode = require('./utils/geocode');
+const { send } = require('process');
+const { request } = require('express');
+
 // @app_constants
 const app = express();
 
@@ -36,20 +43,30 @@ app.get('/about', (req, res) => {
 app.get('/help', (req, res) => {
   res.render('help', {
     title: 'Help',
+    name: 'Erick Vicentin',
     helpText: 'This is some helpful text.',
   });
 });
 
 app.get('/weather', (req, res) => {
-  res.send({
-    forecast: 'Hace frio',
-    location: 'Resistencia',
-  });
-});
+  const address = req.query.address;
 
-app.get('/products', (req, res) => {
-  res.send({
-    products: [],
+  geocode(address, (geoError, { latitude, longitude, location }) => {
+    if (geoError) {
+      return res.send({ geoError });
+    }
+
+    forecast(latitude, longitude, (forecastError, forecastData) => {
+      if (forecastError) {
+        return res.send({ forecastError });
+      }
+
+      res.send({
+        forecast: forecastData,
+        location,
+        address,
+      });
+    });
   });
 });
 
