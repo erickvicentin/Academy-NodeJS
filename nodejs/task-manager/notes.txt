@@ -1,0 +1,85 @@
+MongoDB -------------------------------
+
+Insert documents: 
+
+One document...
+db.collection('--name of collection--').insertOne( 
+    {document with each fields}, 
+    (error, result) => {
+        if (error) {
+            Actions by exist one error...
+        }
+    };
+);
+
+Many documents...
+db.collection('--name of collection--').insertMany( 
+    [
+        {document with each fields}, 
+        {document with each fields}, 
+        {document with each fields},
+    ], 
+    (error, result) => {
+        if (error) {
+            Actions by exist one error...
+        }
+    };
+);
+
+------------------------------------------------------------------------
+Find documents...
+
+One document...
+ db.collection('users').findOne(
+      { name: 'Melisa', age: 2 },
+      (error, user) => {
+        if (error) {
+          console.log('Unable to fetch users');
+        } else if (user === null) {
+          console.log('This user not exist');
+        } else {
+          console.log(user);
+        }
+      }
+    );
+  }
+);
+
+Many documents...
+db.collection('users')
+      .find({ age: 27 })
+      .toArray((error, users) => {
+        if (error) {
+          console.log('No user was found.');
+        }
+        console.log(users);
+      });
+
+Or... (return how many elements was found)
+db.collection('users')
+      .find({ age: 27 })
+      .count((error, count) => {
+        if (error) {
+          console.log('No user was found.');
+        }
+        console.log(count);
+      });
+  }
+);
+
+------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+##CHALLENGES
+db.collection('tasks')
+      .find({ completed: false })
+      .toArray((error, tasks) => {
+        console.log(tasks);
+      });
