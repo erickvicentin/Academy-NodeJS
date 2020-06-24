@@ -125,6 +125,34 @@ db.collection('users')
         console.log(error);
       });
 
+
+----------------------------------------------------------------------
+Mongoose document model and insert (with save)
+
+const User = mongoose.model('User', {
+  name: {
+    type: String,
+  },
+  age: {
+    type: Number,
+  },
+});
+
+const me = new User({
+  name: 'Erick',
+  age: '23',
+});
+
+me.save()
+  .then(() => {
+    console.log(`Resultado: ${me}`);
+  })
+  .catch((error) => {
+    console.log(`Error: ${error}`);
+  });
+
+
+
 ##CHALLENGES
 db.collection('tasks')
       .find({ completed: false })
