@@ -69,13 +69,61 @@ db.collection('users')
 
 ------------------------------------------------------------------------
 
+Update...
+
+One document...
+db.collection('users')
+      .updateOne(
+        {
+          _id: new objectID('5ef2865aa1f3761d94c56047'),
+        },
+        {
+          $inc: {
+            age: 1,
+          },
+        }
+      )
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+Many documents...
+ db.collection('tasks')
+      .updateMany({ completed: false }, { $set: { completed: true } })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+------------------------------------------------------------------------
+
+Delete documents...
+
+one document...
+db.collection('users')
+      .deleteOne({ name: 'Diego' })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
 
-
-
-
-
-
+many documents...
+db.collection('users')
+      .deleteMany({ age: 27 })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
 ##CHALLENGES
 db.collection('tasks')
