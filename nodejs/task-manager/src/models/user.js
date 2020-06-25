@@ -1,5 +1,6 @@
 // @node_modules
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const validator = require('validator');
 
@@ -47,8 +48,28 @@ const userSchema = new mongoose.Schema({
       }
     },
   },
+  tokens: [
+    {
+      token: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
 });
 
+// Verify if the token is correct
+userSchema.methods.generateAuthToken = async function () {
+  const user = this;
+  const token = jwt.sign({ _id: user._id.toString() }, 'task-app-vicerick');
+
+  user.tokens = user.tokens.concat({ token });
+  await user.save();
+
+  return token;
+};
+
+// Login with correct credentials
 userSchema.statics.findByCredentials = async (email, password) => {
   const user = await User.findOne({ email });
 
