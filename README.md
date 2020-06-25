@@ -33,3 +33,7 @@ The necessary packages will be installed for the application to work, and it wil
 
 Enjoy!
 
+## WEATHER-APP
+* [Available here!](https://vicer-weather-application.herokuapp.com/) My first application using Node.js with Express.js. In it I have configured both the back-end and the minimalist front-end. The application uses third-party APIs such as [WeatherStack](https://weatherstack.com) and [MapBox](https://www.mapbox.com) to locate the location and obtain the weather data. Weathe-app is deployed on Heroku.
+
+![weather-app](https://user-images.githubusercontent.com/54728319/85678804-3399e380-b69f-11ea-8a3f-be5d0b0756a2.png)
