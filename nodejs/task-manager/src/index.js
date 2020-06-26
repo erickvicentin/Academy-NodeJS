@@ -39,7 +39,7 @@ Created by Erick Vicentin. Using Node.js with Express.js and MongoDB
   );
 });
 
-const Task = require('./models/task');
+/* const Task = require('./models/task');
 const User = require('./models/user');
 
 const main = async () => {
@@ -48,4 +48,4 @@ const main = async () => {
   console.log(user.tasks);
 };
 
-main();
+main(); */
