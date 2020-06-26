@@ -1,12 +1,26 @@
 // @node_modules
 const express = require('express');
+require('./database/mongoose');
+
+// @app_modules
 const userRouter = require('./routers/user');
 const taskRouter = require('./routers/task');
-require('./database/mongoose');
 
 // @app_constants
 const app = express();
 const port = process.env.PORT || 3000;
+
+/* app.use((req, res, next) => {
+  if (req.method === 'GET') {
+    res.send('GET requests are disabled.');
+  } else {
+    next();
+  }
+}); */
+
+/* app.use((req, res, next) => {
+  res.status(503).send('Site is currently down. Check back soon!');
+}); */
 
 app.use(express.json());
 app.use(userRouter);

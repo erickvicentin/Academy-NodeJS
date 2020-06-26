@@ -1,7 +1,12 @@
 // @node_modules
 const express = require('express');
-const router = new express.Router();
+
+// @app_modules
 const User = require('../models/user');
+const auth = require('../middleware/auth');
+
+// @own_constants
+const router = new express.Router();
 
 router.post('/users', async (req, res) => {
   const user = new User(req.body);
@@ -29,7 +34,7 @@ router.post('/users/login', async (req, res) => {
   }
 });
 
-router.get('/users', async (req, res) => {
+router.get('/users', auth, async (req, res) => {
   try {
     const users = await User.find({});
     res.status(502).send(users);
@@ -55,7 +60,7 @@ router.patch('/users/:id', async (req, res) => {
   const allowedUpdates = ['name', 'password', 'age', 'email'];
   const updates = Object.keys(req.body);
   const isValidOperation = updates.every((update) => {
-    return allowedUpdates.includes(update);
+    allowedUpdates.includes(update);
   });
 
   if (!isValidOperation) {
