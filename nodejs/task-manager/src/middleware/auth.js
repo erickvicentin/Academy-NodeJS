@@ -17,6 +17,7 @@ const auth = async (req, res, next) => {
       throw new Error('Unable to login.');
     }
 
+    req.token = token;
     req.user = user;
     next();
   } catch (error) {

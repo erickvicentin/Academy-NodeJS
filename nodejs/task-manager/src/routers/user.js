@@ -20,6 +20,7 @@ router.post('/users', async (req, res) => {
   }
 });
 
+// Login session (created token)
 router.post('/users/login', async (req, res) => {
   try {
     const user = await User.findByCredentials(
@@ -34,15 +35,38 @@ router.post('/users/login', async (req, res) => {
   }
 });
 
-router.get('/users', auth, async (req, res) => {
+// Logout current sessions (deleted current tokens)
+router.post('/users/logout', auth, async (req, res) => {
   try {
-    const users = await User.find({});
-    res.status(502).send(users);
+    req.user.tokens = req.user.tokens.filter((token) => {
+      return token.token !== req.token;
+    });
+    await req.user.save();
+
+    res.send();
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send();
   }
 });
 
+// Logout of all sessions (deleted all tokens)
+router.post('/users/logoutAll', auth, async (req, res) => {
+  try {
+    req.user.tokens = [];
+    await req.user.save();
+
+    res.send();
+  } catch (error) {
+    res.status(500).send();
+  }
+});
+
+// User profile (current session)
+router.get('/users/me', auth, async (req, res) => {
+  res.send(req.user);
+});
+
+// Get user by id
 router.get('/users/:id', async (req, res) => {
   const _id = req.params.id;
 
@@ -55,6 +79,7 @@ router.get('/users/:id', async (req, res) => {
   }
 });
 
+// Update user data by id
 router.patch('/users/:id', async (req, res) => {
   const _id = req.params.id;
   const allowedUpdates = ['name', 'password', 'age', 'email'];
@@ -84,6 +109,7 @@ router.patch('/users/:id', async (req, res) => {
   }
 });
 
+// Delete user data by id
 router.delete('/users/:id', async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.params.id);
