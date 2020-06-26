@@ -9,6 +9,9 @@ const Task = require('./task');
 
 const userSchema = new mongoose.Schema(
   {
+    avatar: {
+      type: Buffer,
+    },
     name: {
       required: true,
       trim: true,
