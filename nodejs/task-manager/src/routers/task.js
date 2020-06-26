@@ -24,12 +24,29 @@ router.post('/tasks', auth, async (req, res) => {
 });
 
 // List all tasks
+// GET /tasks?completed=true or false
+// GET /tasks?limit=10&skip=20
+// GET /tasks?sortBy
 router.get('/tasks', auth, async (req, res) => {
+  const match = {};
+  if (req.query.completed) {
+    match.completed = req.query.completed === 'true';
+  }
+
   try {
-    const tasks = await Task.find({ owner: req.user._id });
-    res.status(202).send(tasks);
+    await req.user
+      .populate({
+        path: 'tasks',
+        match,
+        options: {
+          limit: parseInt(req.query.limit),
+          skip: parseInt(req.query.skip),
+        },
+      })
+      .execPopulate();
+    res.send(req.user.tasks);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send();
   }
 });
 
