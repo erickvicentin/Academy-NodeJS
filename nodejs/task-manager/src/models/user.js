@@ -58,6 +58,17 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
+// Send the public data of user
+userSchema.methods.toJSON = function () {
+  const user = this;
+  const userObject = user.toObject();
+
+  delete userObject.password;
+  delete userObject.tokens;
+
+  return userObject;
+};
+
 // Verify if the token is correct
 userSchema.methods.generateAuthToken = async function () {
   const user = this;
