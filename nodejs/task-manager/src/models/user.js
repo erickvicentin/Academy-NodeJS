@@ -4,6 +4,9 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const validator = require('validator');
 
+// @app_modules
+const Task = require('./task');
+
 const userSchema = new mongoose.Schema({
   name: {
     required: true,
@@ -58,6 +61,14 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
+// Delete user tasks then user is removed
+userSchema.pre('remove', async function (next) {
+  const user = this;
+  await Task.deleteMany({ owner: user._id });
+  next();
+});
+
+// Virtual relation tasks- users
 userSchema.virtual('tasks', {
   ref: 'Task',
   localField: '_id',
