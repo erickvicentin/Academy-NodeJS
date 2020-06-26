@@ -38,3 +38,14 @@ Created by Erick Vicentin. Using Node.js with Express.js and MongoDB
 `
   );
 });
+
+const Task = require('./models/task');
+const User = require('./models/user');
+
+const main = async () => {
+  const user = await User.findById('5ef5b4049f93bf08d89d54db');
+  await user.populate('tasks').execPopulate();
+  console.log(user.tasks);
+};
+
+main();

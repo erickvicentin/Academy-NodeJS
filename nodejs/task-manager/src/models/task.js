@@ -1,6 +1,5 @@
 // @node_modules
 const mongoose = require('mongoose');
-const validator = require('validator');
 
 const Task = mongoose.model('Task', {
   description: {
@@ -11,6 +10,11 @@ const Task = mongoose.model('Task', {
   completed: {
     default: false,
     type: Boolean,
+  },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'User',
   },
 });
 
