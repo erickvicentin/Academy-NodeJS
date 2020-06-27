@@ -6,6 +6,7 @@ const multer = require('multer');
 const User = require('../models/user');
 const auth = require('../middleware/auth');
 const sharp = require('sharp');
+const { sendWelcomeEmail, sendCancelationEmail } = require('../emails/account');
 
 // @own_constants
 const router = new express.Router();
@@ -14,6 +15,7 @@ const upload = multer({
     fileSize: 1000000,
   },
   fileFilter(req, file, cb) {
+    //admit only this image extensions
     if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
       return cb(new Error('Please upload an image'));
     }
@@ -22,11 +24,13 @@ const upload = multer({
   },
 });
 
+// Create new user
 router.post('/users', async (req, res) => {
   const user = new User(req.body);
 
   try {
-    await user.save();
+    await user.save(); //save user
+    sendWelcomeEmail(user.email, user.name); //send email
     const token = await user.generateAuthToken();
     res.status(201).send({ user, token });
   } catch (error) {
@@ -119,11 +123,14 @@ router.patch('/users/me', auth, async (req, res) => {
   }
 });
 
-// Delete user data by id
+// Delete user
 router.delete('/users/me', auth, async (req, res) => {
+  const user = req.user;
+
   try {
-    await req.user.remove();
-    res.send(req.user);
+    await user.remove();
+    sendCancelationEmail(user.email, user.name);
+    res.send(user);
   } catch (error) {
     res.status(500).send(error);
   }
