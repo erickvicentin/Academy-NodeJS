@@ -1,5 +1,4 @@
 // @Node_modules
-const express = require('express');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const request = require('supertest');
@@ -51,10 +50,10 @@ test('Should login existing user', async () => {
   // Assertions about the response
   expect(response.body).toMatchObject({
     user: {
-      name: 'User',
-      email: 'user@test.com',
+      name: userOne.name,
+      email: userOne.email,
     },
-    token: user.tokens[0].token,
+    token: user.tokens[1].token,
   });
   expect(user.password).not.toBe('test123!!');
 
@@ -97,4 +96,36 @@ test('Should delete account for user.', async () => {
 
 test('Should not delete account for unauthenticated user.', async () => {
   await request(app).delete('/users/me').send().expect(401);
+});
+
+test('Should upload avatar image', async () => {
+  await request(app)
+    .post('/users/me/avatar')
+    .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+    .attach('avatar', 'tests/fixtures/profile-pic.jpg')
+    .expect(200);
+
+  const user = await User.findById(userOneID);
+  expect(user.avatar).toEqual(expect.any(Buffer));
+});
+
+// @Challenge
+test('Should update valid user fields', async () => {
+  await request(app)
+    .patch('/users/me')
+    .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+    .send({ name: 'Erick' })
+    .expect(200);
+
+  const user = await User.findById(userOneID);
+  expect(user.name).toBe('Erick');
+});
+
+// @Challenge
+test('Should not update invalid user fields', async () => {
+  await request(app)
+    .patch('/users/me')
+    .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
+    .send({ location: 'Chaco' })
+    .expect(400);
 });
