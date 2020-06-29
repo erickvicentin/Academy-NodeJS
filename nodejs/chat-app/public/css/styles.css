@@ -1,0 +1,18 @@
+button {
+  background: grey;
+  border-radius: 3px;
+  color: white;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+button:hover {
+  background: white;
+  color: black;
+}
+
+input {
+  border-radius: 5px;
+  padding: 5px;
+  width: 500px;
+}
