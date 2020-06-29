@@ -14,12 +14,12 @@ test('Should convert 0 C to 32 F', () => {
   expect(result).toBe(0);
 });
 
-/* test('Async test demo', (done) => {
+test('Async test demo', (done) => {
   setTimeout(() => {
     expect(2).toBe(2);
     done();
   });
-}); */
+});
 
 test('should add 2 numbers', (done) => {
   add(2, 3).then((sum) => {
