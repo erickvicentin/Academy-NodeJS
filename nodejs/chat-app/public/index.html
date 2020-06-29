@@ -7,6 +7,30 @@
   </head>
   <body>
     <h1>HOME</h1>
+    <form id="message-form">
+      <input
+        name="message"
+        placeholder="Type your message..."
+        style="padding: 5px; width: 500px;"
+      />
+      <button
+        id="send"
+        style="
+          padding: 5px;
+          background: grey;
+          color: white;
+          border-radius: 5px;
+        "
+      >
+        Send
+      </button>
+    </form>
+    <button
+      id="geo-share"
+      style="padding: 5px; background: grey; color: white; border-radius: 5px;"
+    >
+      Share Location
+    </button>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/chat.js"></script>
   </body>
