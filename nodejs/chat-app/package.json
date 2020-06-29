@@ -1,0 +1,27 @@
+{
+  "name": "chat-app",
+  "version": "1.0.0",
+  "description": "Aplication created with Udemy Course by Andrew Mead",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erickvicentin/Academy-NodeJS.git"
+  },
+  "author": "Erick Vicentin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erickvicentin/Academy-NodeJS/issues"
+  },
+  "homepage": "https://github.com/erickvicentin/Academy-NodeJS#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
