@@ -1,29 +1,32 @@
 const socket = io();
 
-// @App_elements
+// Elements
 const $messageForm = document.querySelector('#message-form');
-const $messageFormInput = document.querySelector('input');
-const $messageFormButton = document.querySelector('#send');
-const $geoShareButton = document.querySelector('#geo-share');
+const $messageFormInput = $messageForm.querySelector('input');
+const $messageFormButton = $messageForm.querySelector('button');
+const $sendLocationButton = document.querySelector('#send-location');
 const $messages = document.querySelector('#messages');
 
-// @Templates
+// Templates
 const messageTemplate = document.querySelector('#message-template').innerHTML;
 const locationMessageTemplate = document.querySelector(
   '#location-message-template'
 ).innerHTML;
 
 socket.on('message', (message) => {
+  console.log(message);
   const html = Mustache.render(messageTemplate, {
-    message: message,
+    message: message.text,
+    createdAt: moment(message.createdAt).format('h:mm a'),
   });
   $messages.insertAdjacentHTML('beforeend', html);
 });
 
-socket.on('locationMessage', (url) => {
-  console.log(url);
+socket.on('locationMessage', (message) => {
+  console.log(message);
   const html = Mustache.render(locationMessageTemplate, {
-    url,
+    url: message.url,
+    createdAt: moment(message.createdAt).format('h:mm a'),
   });
   $messages.insertAdjacentHTML('beforeend', html);
 });
@@ -31,13 +34,11 @@ socket.on('locationMessage', (url) => {
 $messageForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  //disable send button while the message is sending
   $messageFormButton.setAttribute('disabled', 'disabled');
 
   const message = e.target.elements.message.value;
 
   socket.emit('sendMessage', message, (error) => {
-    // enable button when the message was delivered
     $messageFormButton.removeAttribute('disabled');
     $messageFormInput.value = '';
     $messageFormInput.focus();
@@ -46,17 +47,17 @@ $messageForm.addEventListener('submit', (e) => {
       return console.log(error);
     }
 
-    console.log('Message delivered.');
+    console.log('Message delivered!');
   });
 });
 
-// Get location and send when click on button
-$geoShareButton.addEventListener('click', () => {
+$sendLocationButton.addEventListener('click', () => {
   if (!navigator.geolocation) {
-    return alert('Geolocation is not supported by your browser');
+    return alert('Geolocation is not supported by your browser.');
   }
 
-  $geoShareButton.setAttribute('disabled', 'disabled');
+  $sendLocationButton.setAttribute('disabled', 'disabled');
+
   navigator.geolocation.getCurrentPosition((position) => {
     socket.emit(
       'sendLocation',
@@ -64,9 +65,9 @@ $geoShareButton.addEventListener('click', () => {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
       },
-      (message) => {
-        $geoShareButton.removeAttribute('disabled');
-        console.log(message);
+      () => {
+        $sendLocationButton.removeAttribute('disabled');
+        console.log('Location shared!');
       }
     );
   });
