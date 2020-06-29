@@ -14,24 +14,34 @@ const io = socketio(server);
 
 app.use(express.static(publicDirectoryPath));
 
-app.get('', (req, res) => {
-  res.render('index', {
-    title: 'Home',
-    name: 'Erick Vicentin',
-  });
-});
+let msg = '';
 
-io.on('connection', () => {
+io.on('connection', (socket) => {
   console.log('New WebSocket connection');
+
+  socket.emit('message', 'Welcome!');
+  socket.broadcast.emit('message', 'A new user has joined!');
+
+  socket.on('sendMessage', (message) => {
+    io.emit('message', message);
+  });
+
+  socket.on('disconnect', () => {
+    io.emit('message', 'A user has left.');
+  });
+
+  // CHALLENGE
+  socket.on('sendLocation', (position) => {
+    io.emit(
+      'message',
+      `https://google.com/maps?q=${position.latitude},${position.longitude}`
+    );
+  });
+
+  //io.emit('msgUpdated', msg);
 });
 
 console.clear();
 server.listen(port, () => {
-  console.log(
-    `
-Created by Erick Vicentin. Using Node.js with Express.js and Socket.io
-
---------------------- Server is up on port ${port} ----------------------
-`
-  );
+  console.log(`Server is up on port ${port}`);
 });
