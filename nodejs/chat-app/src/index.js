@@ -10,6 +10,12 @@ const {
   generateMessage,
   generateLocationMessage,
 } = require('./utils/messages');
+const {
+  addUser,
+  getUser,
+  getUsersInRoom,
+  removeUser,
+} = require('./utils/users');
 
 // @Own_constants
 const app = express();
@@ -23,15 +29,25 @@ app.use(express.static(publicDirectoryPath));
 io.on('connection', (socket) => {
   console.log('New WebSocket connection');
 
-  socket.on('join', ({ username, room }) => {
-    socket.join(room);
+  // ADD USER TO ROOM
+  socket.on('join', (options, callback) => {
+    const { error, user } = addUser({ id: socket.id, ...options });
+
+    if (error) {
+      return callback(error);
+    }
+
+    socket.join(user.room);
 
     socket.emit('message', generateMessage('Welcome!'));
     socket.broadcast
-      .to(room)
-      .emit('message', generateMessage(`${username} has joined!`));
+      .to(user.room)
+      .emit('message', generateMessage(`${user.username} has joined!`));
+
+    callback();
   });
 
+  // SEND MESSAGE TO ROOM
   socket.on('sendMessage', (message, callback) => {
     const filter = new Filter();
 
@@ -43,6 +59,7 @@ io.on('connection', (socket) => {
     callback();
   });
 
+  // SEND LOCATION TO ROOM
   socket.on('sendLocation', (coords, callback) => {
     io.emit(
       'locationMessage',
@@ -53,8 +70,17 @@ io.on('connection', (socket) => {
     callback();
   });
 
+  // DISCONNECT - REMOVE USER TO ROOM
   socket.on('disconnect', () => {
-    io.emit('message', generateMessage('A user has left!'));
+    const user = removeUser(socket.id);
+
+    // Show the message only if the room have at least one user
+    if (user) {
+      io.to(user.room).emit(
+        'message',
+        generateMessage(`${user.username} has left!`)
+      );
+    }
   });
 });
 
